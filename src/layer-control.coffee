@@ -26,7 +26,7 @@ LayerControl.prototype = mapboxgl.util.inherit(mapboxgl.Control,
     a.addEventListener('click', -> fn())
     return a
 
-  closedLayers: (layers) ->
+  _hideLayers: (layers) ->
     @map.batch (b) ->
       for l in layers
         b.setLayoutProperty(l, 'visibility', 'none')
@@ -42,7 +42,7 @@ LayerControl.prototype = mapboxgl.util.inherit(mapboxgl.Control,
     if group.visible
       @_showLayers(group.layers)
     else
-      @closedLayers(group.layers)
+      @_hideLayers(group.layers)
 
   _updateLayers: (panelEl, style) ->
     i = 0
@@ -52,9 +52,7 @@ LayerControl.prototype = mapboxgl.util.inherit(mapboxgl.Control,
       itemEl = @_createElement('li', null, panelEl)
       switchEl = @_createElement('div', elementClassName, itemEl)
       switchEl.innerHTML = '<input id="' + elementId + '" name="' + name + '" type="checkbox" class="' + elementClassName + '-checkbox" checked>
-                            <label class="' + elementClassName + '-label" for="' + elementId + '">
-                            ' + name + '
-                            </label>'
+                            <label class="' + elementClassName + '-label" for="' + elementId + '">' + name + '</label>'
       document.getElementById(elementId).addEventListener('change', @_onToggleLayer.bind(@))
 
   onAdd: (map) ->
