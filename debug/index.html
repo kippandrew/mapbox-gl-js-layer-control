@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapbox GL JS debug page</title>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.9.0/mapbox-gl.css' rel='stylesheet'/>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.9.0/mapbox-gl.js'></script>
+  <link href='../dist/layer-control.css' rel='stylesheet'/>
+  <style>
+    body { margin: 0; padding: 0; }
+    html, body, #map { height: 100%; }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+  <script src='layer-control.js'></script>
+  <script type='text/javascript'>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2lpcHBhbmRyZXciLCJhIjoiNjZmNjBhZmEwZmJhOWY5YTE4ODE5ZGIwM2U1ZTcwMzQifQ.pjggf_JhtFX7O72qWYJ_XA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://www.mapbox.com/mapbox-gl-styles/styles/outdoors-v7.json', //stylesheet location
+      center: [40, -74.50],
+      zoom: 9
+    });
+    var groups = {
+      'Land Cover': {
+        visible: true,
+        layers: [
+          'landcover_snow',
+          'landcover_crop',
+          'landcover_grass',
+          'landcover_scrub',
+          'landcover_wood'
+        ]
+      },
+      'Land Use': {
+        visible: true,
+        layers: [
+          'landuse_snow',
+          'landuse_crop',
+          'landuse_grass',
+          'landuse_scrub',
+          'landuse_wood',
+          'landuse_rock',
+          'landuse_industrial',
+          'landuse_school',
+          'landuse_parking',
+          'landuse_sand',
+          'landuse_park',
+          'landuse_pitch',
+          'landuse_cemetery'
+        ]
+      },
+      'Buildings': {
+        visible: true,
+        layers: [
+          "building_shadow",
+          "building"
+        ]
+      },
+      'Roads': {
+        'visible': true,
+        layers: [
+          "tunnel_path_bg",
+          "tunnel_motorway_link_casing",
+          "tunnel_service_casing",
+          "tunnel_street_casing",
+          "tunnel_main_casing",
+          "tunnel_motorway_casing",
+          "tunnel_motorway_link",
+          "tunnel_service",
+          "tunnel_street",
+          "tunnel_main",
+          "tunnel_motorway",
+          "tunnel_major_rail",
+          "tunnel_major_rail_hatching",
+          "road_pedestrian",
+          "road_motorway_link_casing",
+          "road_service_casing",
+          "road_street_casing",
+          "road_main_casing",
+          "road_motorway_casing_high",
+          "road_motorway_link",
+          "road_service",
+          "road_street",
+          "road_main",
+          "road_motorway_casing_low",
+          "road_motorway",
+          "road_major_rail",
+          "road_major_rail_hatching",
+          "bridge_motorway_link_casing",
+          "bridge_service_casing",
+          "bridge_street_casing",
+          "bridge_main_casing",
+          "bridge_motorway_casing",
+          "bridge_motorway_link",
+          "bridge_service",
+          "bridge_street",
+          "bridge_main",
+          "bridge_motorway",
+          "bridge_aerialway_casing",
+          "bridge_aerialway",
+          "bridge_aerialway_hatching",
+          "bridge_major_rail",
+          "bridge_major_rail_hatching",
+          "aeroway_runway",
+          "aeroway_taxiway",
+          "aeroway_fill",
+          "road_label_1",
+          "road_label_2",
+          "road_label_3",
+        ]
+      },
+      'Hillshade': {
+        visible: true,
+        layers: [
+          "hillshade_highlight_bright",
+          "hillshade_highlight_med",
+          "hillshade_shadow_faint",
+          "hillshade_shadow_med",
+          "hillshade_shadow_dark",
+          "hillshade_shadow_extreme"
+        ]
+      }
+    };
+    ctrl = new mapboxgl.LayerControl({groups: groups});
+    map.addControl(ctrl);
+  </script>
+</body>
+</html>

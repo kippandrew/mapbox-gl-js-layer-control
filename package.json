@@ -1,0 +1,41 @@
+{
+  "name": "mapbox-gl-layer-control",
+  "version": "0.1.0",
+  "description": "Layer UI control for mapbox-gl-js",
+  "author": "Andy Kipp <kipp.andrew@gmail.com>",
+  "license": "BSD 3-Clause",
+  "homepage": "https://github.com/kippandrew/mapbox-gl-layer-control",
+  "main": "js/layer-control.js",
+  "scripts": {
+    "start": "budo js/layer-control.js --serve=debug/layer-control.js --live -t --standalone mapbox-gl-layer-control | bistre",
+    "test": "npm run lint && prova test/js/*/*.js",
+    "build": "browserify -d js/layer-control.js --standalone mapboxgl-gl-layer-control > dist/layer-control-dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kippandrew/mapbox-gl-layer-control"
+  },
+  "bugs": {
+    "url": "https://github.com/kippandrew/mapbox-gl-layer-control/issues"
+  },
+  "dependencies": {
+    "mapbox-gl": "^0.9.0"
+  },
+  "devDependencies": {
+    "bistre": "^1.0.1",
+    "brfs": "^1.4.0",
+    "browserify": "^11.0.1",
+    "budo": "^4.1.0",
+    "coffee-script": "^1.9.3",
+    "envify": "^3.4.0",
+    "eslint": "^1.0.0",
+    "glify": "^0.5.0"
+  },
+  "browserify": {
+    "transform": [
+      "envify",
+      "glify",
+      "brfs"
+    ]
+  }
+}
